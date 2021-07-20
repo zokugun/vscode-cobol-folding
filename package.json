@@ -2,7 +2,7 @@
 	"name": "cobol-folding",
 	"displayName": "Cobol Folding",
 	"description": "Add foldings to Cobol files",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "zokugun",
 	"homepage": "https://github.com/zokugun/vscode-cobol-folding",
 	"repository": {
