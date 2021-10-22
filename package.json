@@ -3,7 +3,12 @@
 	"displayName": "Cobol Folding",
 	"description": "Add foldings to Cobol files",
 	"version": "0.1.2",
+	"author": {
+		"name": "Baptiste Augrain",
+		"email": "daiyam@zokugun.org"
+	},
 	"publisher": "zokugun",
+	"license": "MIT",
 	"homepage": "https://github.com/zokugun/vscode-cobol-folding",
 	"repository": {
 		"type": "git",
@@ -12,19 +17,43 @@
 	"bugs": {
 		"url": "https://github.com/zokugun/vscode-cobol-folding/issues"
 	},
-	"author": {
-		"name": "Baptiste Augrain",
-		"email": "daiyam@zokugun.org"
-	},
-	"license": "MIT",
 	"engines": {
 		"vscode": "^1.23.0"
 	},
-	"categories": [
-		"Other"
+	"main": "./lib/index.js",
+	"scripts": {
+		"bundle": "ncc build out/extension --out lib",
+		"commit": "cz",
+		"compile": "tsc -p ./ src",
+		"lint": "xo",
+		"prepare": "husky install; fixpack || true",
+		"release": "release-it",
+		"vscode:prepublish": "npm run compile && npm run bundle",
+		"watch": "tsc-watch -p src --onSuccess 'npm run bundle'"
+	},
+	"dependencies": {
+		"@zokugun/vscode.explicit-folding-api": "0.1.0"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^13.1.0",
+		"@commitlint/config-conventional": "^13.1.0",
+		"@types/node": "^14.17.16",
+		"@types/vscode": "^1.23.0",
+		"@vercel/ncc": "^0.29.0",
+		"commitizen": "^4.2.4",
+		"fixpack": "^4.0.0",
+		"husky": "^7.0.1",
+		"lint-staged": "^11.1.1",
+		"release-it": "^14.11.3",
+		"tsc-watch": "^4.4.0",
+		"typescript": "^4.2.4",
+		"xo": "^0.43.0"
+	},
+	"extensionDependencies": [
+		"zokugun.explicit-folding"
 	],
 	"activationEvents": [
-		"*"
+		"onLanguage:cobol"
 	],
 	"contributes": {
 		"configuration": {
@@ -39,30 +68,16 @@
 			}
 		}
 	},
-	"main": "./out/extension",
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./"
-	},
-	"dependencies": {
-		"@zokugun/vscode.explicit-folding-api": "0.1.0"
-	},
-	"devDependencies": {
-		"@types/node": "^10.17.17",
-		"@types/vscode": "^1.23.0",
-		"typescript": "^4.2.4"
-	},
-	"extensionDependencies": [
-		"zokugun.explicit-folding"
-	],
-	"keywords": [
-		"folding",
-		"cobol"
-	],
 	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#373b41",
 		"theme": "dark"
-	}
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"cobol",
+		"folding"
+	]
 }

@@ -6,5 +6,4 @@
 !package.json
 !LICENSE
 !README.md
-!out/extension.js
-!node_modules/**
+!lib/**

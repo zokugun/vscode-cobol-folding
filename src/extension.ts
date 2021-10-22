@@ -1,34 +1,34 @@
-import * as vscode from 'vscode';
-const pkg = require('../package.json');
-
 import { explicitFoldingExtensionId, ExplicitFoldingHub } from '@zokugun/vscode.explicit-folding-api';
+import * as vscode from 'vscode';
+import pkg from '../package.json';
 
-const VERSION_KEY = 'cobolFoldingVersion';
+const VERSION_KEY = 'version';
 
 let $foldingHub: ExplicitFoldingHub | undefined;
 
 async function showWhatsNewMessage(version: string) { // {{{
 	const actions: vscode.MessageItem[] = [{
-		title: 'Homepage'
+		title: 'Homepage',
 	}, {
-		title: 'Release Notes'
+		title: 'Release Notes',
 	}];
 
 	const result = await vscode.window.showInformationMessage(
 		`Cobol Folding has been updated to v${version} — check out what's new!`,
-		...actions
+		...actions,
 	);
 
-	if (result != null) {
-		if (result === actions[0]) {
+	if(result !== null) {
+		if(result === actions[0]) {
 			await vscode.commands.executeCommand(
 				'vscode.open',
-				vscode.Uri.parse(`${pkg.homepage}`)
+				vscode.Uri.parse(`${pkg.homepage}`),
 			);
-		} else if (result === actions[1]) {
+		}
+		else if(result === actions[1]) {
 			await vscode.commands.executeCommand(
 				'vscode.open',
-				vscode.Uri.parse(`${pkg.homepage}/blob/master/CHANGELOG.md`)
+				vscode.Uri.parse(`${pkg.homepage}/blob/master/CHANGELOG.md`),
 			);
 		}
 	}
@@ -39,18 +39,18 @@ function setup() { // {{{
 
 	$foldingHub = explicitFoldingExtension?.exports;
 
-	if ($foldingHub) {
+	if($foldingHub) {
 		const config = vscode.workspace.getConfiguration('cobolFolding');
 
 		const enabled = config.get<boolean>('enabled');
 
-		if (enabled) {
+		if(enabled) {
 			$foldingHub.registerFoldingRules('cobol', [
 				// Comments block
 				{
 					name: 'comment',
 					whileRegex: '^.{6}\\*',
-					kind: 'comment'
+					kind: 'comment',
 				},
 				// Division
 				{
@@ -71,16 +71,17 @@ function setup() { // {{{
 										// Page eject
 										{
 											name: 'eject',
-											separatorRegex: '^.{6}\\/'
-										}
-									]
-								}
-							]
-						}
-					]
-				}
+											separatorRegex: '^.{6}\\/',
+										},
+									],
+								},
+							],
+						},
+					],
+				},
 			]);
-		} else {
+		}
+		else {
 			$foldingHub.unregisterFoldingRules('cobol');
 		}
 	}
@@ -92,37 +93,40 @@ export async function activate(context: vscode.ExtensionContext) { // {{{
 
 	const config = vscode.workspace.getConfiguration('explicitFolding');
 
-	if (previousVersion === undefined || currentVersion !== previousVersion) {
-		context.globalState.update(VERSION_KEY, currentVersion);
+	if(previousVersion === undefined || currentVersion !== previousVersion) {
+		void context.globalState.update(VERSION_KEY, currentVersion);
 
 		const notification = config.get<string>('notification');
 
-		if (previousVersion === undefined) {
+		if(previousVersion === undefined) {
 			// don't show notification on install
-		} else if (notification === 'major') {
-			if (currentVersion.split('.')[0] > previousVersion.split('.')[0]) {
-				showWhatsNewMessage(currentVersion);
+		}
+		else if(notification === 'major') {
+			if(currentVersion.split('.')[0] > previousVersion.split('.')[0]) {
+				void showWhatsNewMessage(currentVersion);
 			}
-		} else if (notification === 'minor') {
-			if (currentVersion.split('.')[0] > previousVersion.split('.')[0] || (currentVersion.split('.')[0] === previousVersion.split('.')[0]) && currentVersion.split('.')[1] > previousVersion.split('.')[1]) {
-				showWhatsNewMessage(currentVersion);
+		}
+		else if(notification === 'minor') {
+			if(currentVersion.split('.')[0] > previousVersion.split('.')[0] || (currentVersion.split('.')[0] === previousVersion.split('.')[0] && currentVersion.split('.')[1] > previousVersion.split('.')[1])) {
+				void showWhatsNewMessage(currentVersion);
 			}
-		} else if (notification !== 'none') {
-			showWhatsNewMessage(currentVersion);
+		}
+		else if(notification !== 'none') {
+			void showWhatsNewMessage(currentVersion);
 		}
 	}
 
 	setup();
 
-	vscode.workspace.onDidChangeConfiguration(event => {
-		if (event.affectsConfiguration('cobolFolding')) {
+	vscode.workspace.onDidChangeConfiguration((event) => {
+		if(event.affectsConfiguration('cobolFolding')) {
 			setup();
 		}
 	});
 } // }}}
 
 export function deactivate(): void { // {{{
-	if ($foldingHub) {
+	if($foldingHub) {
 		$foldingHub.unregisterFoldingRules('cobol');
 	}
 } // }}}
