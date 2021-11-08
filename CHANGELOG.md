@@ -2,7 +2,7 @@
 
 ## v0.2.0 | 2021-10-08
 - it's a web extension
-- support GNUCobol
+- support GnuCOBOL
 
 ## v0.1.2 | 2021-07-20
 - update icon
