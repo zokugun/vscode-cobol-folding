@@ -1,7 +1,7 @@
 {
 	"name": "cobol-folding",
-	"displayName": "Cobol Folding",
-	"description": "Add foldings to Cobol files",
+	"displayName": "COBOL Folding",
+	"description": "Add foldings to COBOL files",
 	"version": "0.1.2",
 	"author": {
 		"name": "Baptiste Augrain",
@@ -57,12 +57,13 @@
 		"zokugun.explicit-folding"
 	],
 	"activationEvents": [
-		"onLanguage:cobol"
+		"onLanguage:cobol",
+		"onLanguage:gnucobol"
 	],
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "Cobol Folding configuration",
+			"title": "COBOL Folding configuration",
 			"properties": {
 				"cobolFolding.enabled": {
 					"type": "boolean",

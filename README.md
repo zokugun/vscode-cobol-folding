@@ -1,17 +1,17 @@
-Cobol Folding
+COBOL Folding
 ================
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/zokugun.cobol-folding.svg)](https://marketplace.visualstudio.com/items?itemName=zokugun.cobol-folding)
 [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/zokugun.cobol-folding.svg)](https://marketplace.visualstudio.com/items?itemName=zokugun.cobol-folding)
 
-Add foldings to Cobol files
+Add foldings to COBOL source files
 
 ## Configuration
 
 By default, the foldings are enabled.
 
-But you can disable the foldings, for a project, with the following config:
+But you can disable the foldings for a project, with the following workspace configuration:
 
 ```
 "cobolFolding.enabled": false // true, by default
