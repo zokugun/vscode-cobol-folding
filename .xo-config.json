@@ -1,4 +1,7 @@
 {
+	"ignores": [
+		"*.config.js"
+	],
 	"rules": {
 		"@typescript-eslint/brace-style": [
 			"error",
