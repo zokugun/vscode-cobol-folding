@@ -27,6 +27,7 @@
 		"commit": "cz",
 		"compile": "tsc -p src",
 		"lint": "xo",
+		"package": "rm -f *.vsix && vsce package",
 		"prepare": "husky install; fixpack || true",
 		"release": "release-it",
 		"vscode:prepublish": "npm run compile && npm run bundle",
@@ -36,22 +37,22 @@
 		"@zokugun/vscode.explicit-folding-api": "0.1.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^13.1.0",
-		"@commitlint/config-conventional": "^13.1.0",
-		"@types/node": "^14.17.16",
+		"@commitlint/cli": "^17.0.3",
+		"@commitlint/config-conventional": "^17.0.3",
+		"@types/node": "^16.11.45",
 		"@types/vscode": "^1.23.0",
-		"commitizen": "^4.2.4",
+		"commitizen": "^4.2.5",
 		"fixpack": "^4.0.0",
-		"husky": "^7.0.1",
-		"lint-staged": "^11.1.1",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
 		"path-browserify": "^1.0.1",
 		"process": "^0.11.10",
-		"release-it": "^14.11.3",
-		"tsc-watch": "^4.4.0",
+		"release-it": "^15.3.0",
+		"tsc-watch": "^5.0.3",
 		"typescript": "^4.2.4",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0",
-		"xo": "^0.43.0"
+		"xo": "0.48.0"
 	},
 	"extensionDependencies": [
 		"zokugun.explicit-folding"
@@ -61,6 +62,12 @@
 		"onLanguage:gnucobol",
 		"onLanguage:COBOL"
 	],
+	"capabilities": {
+		"virtualWorkspaces": true,
+		"untrustedWorkspaces": {
+			"supported": true
+		}
+	},
 	"contributes": {
 		"configuration": {
 			"type": "object",
@@ -85,5 +92,9 @@
 	"keywords": [
 		"cobol",
 		"folding"
+	],
+	"extensionKind": [
+		"ui",
+		"workspace"
 	]
 }
