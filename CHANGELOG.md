@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.0 | 2025-02-13
+- support [COBOL](https://github.com/spgennard/vscode_cobol)
+
 ## v0.2.0 | 2021-10-08
 - it's a web extension
 - support GnuCOBOL
