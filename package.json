@@ -34,7 +34,7 @@
 		"watch": "tsc-watch -p src --onSuccess 'npm run bundle'"
 	},
 	"dependencies": {
-		"@zokugun/vscode.explicit-folding-api": "0.1.0"
+		"@zokugun/vscode.explicit-folding-api": "^0.2.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.0.3",
@@ -52,7 +52,7 @@
 		"typescript": "^4.2.4",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0",
-		"xo": "0.48.0"
+		"xo": "^0.48.0"
 	},
 	"extensionDependencies": [
 		"zokugun.explicit-folding"
