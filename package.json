@@ -59,7 +59,7 @@
 	"activationEvents": [
 		"onLanguage:cobol",
 		"onLanguage:gnucobol",
-  		"onLanguage:COBOL" 
+		"onLanguage:COBOL"
 	],
 	"contributes": {
 		"configuration": {
